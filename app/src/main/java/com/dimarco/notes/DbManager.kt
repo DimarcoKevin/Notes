@@ -1,7 +1,7 @@
 package com.dimarco.notes
 
+import android.content.ContentValues
 import android.content.Context
-import android.database.sqlite.SQLiteAbortException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
@@ -22,14 +22,14 @@ class DbManager {
         val db = DatabaseHelperNotes(context)
         sqlDB = db.writableDatabase
     }
+    fun insert(values: ContentValues): Long {
+        return sqlDB!!.insert(dbTable, "", values)
+    }
 
     inner class DatabaseHelperNotes(context: Context) :
         SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
         var context: Context? = null
-
-
-
 
         override fun onCreate(db: SQLiteDatabase?) {
             db!!.execSQL(sqlCreateTable)
