@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity() {
             var view = layoutInflater.inflate(R.layout.ticket, null)
             var note = noteListAdapter[position]
 
-            view.txtTitle.text = note.title
-            view.txtContent.text = note.content
+            view.tempTitle.text = note.title
+            view.tempContent.text = note.content
 
             return view
         }
