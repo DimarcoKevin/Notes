@@ -2,8 +2,10 @@ package com.dimarco.notes
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.database.sqlite.SQLiteQueryBuilder
 import android.widget.Toast
 
 class DbManager {
@@ -22,8 +24,22 @@ class DbManager {
         val db = DatabaseHelperNotes(context)
         sqlDB = db.writableDatabase
     }
+
+    /**
+     * function used to insert new notes into the Notes table
+     */
     fun insert(values: ContentValues): Long {
         return sqlDB!!.insert(dbTable, "", values)
+    }
+
+    /**
+     * function used to find notes currently in the Notes table
+     */
+    fun query(columns: Array<String>, selection: String, selectionArgs: Array<String>, sortOrder: String): Cursor {
+        val qb = SQLiteQueryBuilder()
+        qb.tables = dbTable
+
+        return qb.query(sqlDB, columns, selection, selectionArgs, null,null, sortOrder)
     }
 
     inner class DatabaseHelperNotes(context: Context) :
