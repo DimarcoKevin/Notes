@@ -1,5 +1,7 @@
 package com.dimarco.notes
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.SearchView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.ticket.view.*
 
@@ -33,10 +37,29 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * grabbing the menu options and then using the menu inflater
+     * creating search view and search manager
+     * using a listener to catch text submit and text change in the text field
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+
+
+        val sv = menu!!.findItem(R.id.searchBar).actionView as SearchView
+        val sm = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+
+        sv.setSearchableInfo(sm.getSearchableInfo(componentName))
+        sv.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(applicationContext, query, Toast.LENGTH_LONG).show()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 

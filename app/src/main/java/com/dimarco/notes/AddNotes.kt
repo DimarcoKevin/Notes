@@ -14,4 +14,8 @@ class AddNotes : AppCompatActivity() {
     fun btnAdd(view: View) {
         finish()
     }
+
+    fun btnDelete(view: View) {
+        finish()
+    }
 }
