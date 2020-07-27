@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteAbortException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 
 class DbManager {
 
@@ -14,22 +15,29 @@ class DbManager {
     val colTitle = "Title"
     val colContent = "Content"
 
-    val sqlDB: SQLiteDatabase? = null
-    val sqlCreateTable = "CREATE TABLE IF NOT EXIST $dbTable ($colID INTEGER PRIMARY KEY, $colTitle VARCHAR(255), $colContent VARCHAR(1024));"
+    var sqlDB: SQLiteDatabase? = null
+    val sqlCreateTable = "CREATE TABLE IF NOT EXISTS $dbTable ($colID INTEGER PRIMARY KEY, $colTitle VARCHAR(255), $colContent VARCHAR(1024));"
 
-    constructor()
-
+    constructor(context: Context) {
+        val db = DatabaseHelperNotes(context)
+        sqlDB = db.writableDatabase
+    }
 
     inner class DatabaseHelperNotes(context: Context) :
         SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
+        var context: Context? = null
+
+
+
 
         override fun onCreate(db: SQLiteDatabase?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            db!!.execSQL(sqlCreateTable)
+            Toast.makeText(this.context, " database has been created.", Toast.LENGTH_LONG).show()
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            db!!.execSQL("DROP TABLE IF EXISTS $dbTable ")
         }
 
     }
