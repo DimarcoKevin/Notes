@@ -1,7 +1,10 @@
 package com.dimarco.notes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -25,8 +28,32 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    // creating the menu options in status bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    /**
+     * moving pages based on menu page chosen from status bar
+     * the intent is used to show where you intend to move
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.addNote-> {
+                var intent = Intent(this, AddNotes::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * this adapter is used to connect to the notes
+     */
     inner class NotesAdapter: BaseAdapter {
-        var noteListAdapter = ArrayList<Note>()
+        private var noteListAdapter = ArrayList<Note>()
         constructor(noteListAdapter: ArrayList<Note>): super() {
             this.noteListAdapter = noteListAdapter
         }
