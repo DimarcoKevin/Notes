@@ -73,10 +73,12 @@ class MainActivity : AppCompatActivity() {
         sv.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(applicationContext, query, Toast.LENGTH_LONG).show()
+                loadQuery("%$query%")
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                loadQuery("%$newText%")
                 return false
             }
 
