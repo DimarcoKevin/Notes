@@ -16,25 +16,47 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.ticket.view.*
 
 class MainActivity : AppCompatActivity() {
+
     /**
      * creating the array list for all the notes
      */
     private var noteList = ArrayList<Note>()
 
+    /**
+     * on create starting method
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // adding dummy notes for testing
-        noteList.add(Note(1,"Bitcoin Note", "Bitcoin is a completely decentralized digital cryptocurrency. Unlike US dollars that you can hold in your hand (or in your bank account), there is no central authority or centralized payment system controlling Bitcoin. Instead, Bitcoin operates in a peer-to-peer network that allows anyone in the world to send and receive Bitcoin without any middleman (like a bank, central bank or payment processor)."))
-        noteList.add(Note(2,"Ethereum Note", "Ethereum is a smart contract platform that enables developers to build decentralized applications (DApps) on its blockchain. Ether (ETH) is the native digital currency of the Ethereum platform."))
-        noteList.add(Note(3,"Nano Note", "Launched in 2015, Nano describes itself as an open source, sustainable, and secure next-generation digital currency focused on removing perceived inefficiencies present in existing cryptocurrencies. Designed to solve peer to peer transfer of value, Nano aims to revolutionize the world economy through an ultrafast and fee-less network that is open and accessible to everyone."))
+        loadQuery("%")
+    }
 
+    /**
+     * creating a search query method
+     * this method will search by title, or by all if nothing is chosen
+     */
+    private fun loadQuery(title: String) {
+        // load notes from database
+        var dbManager = DbManager(this)
+        val columns = arrayOf("ID", "Title", "Content")
+        val selectionArgs = arrayOf(title)
+        val cursor = dbManager.query(columns, "Title LIKE ?", selectionArgs, "Title")
+        noteList.clear()
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex("ID"))
+                val title = cursor.getString(cursor.getColumnIndex("Title"))
+                val content = cursor.getString(cursor.getColumnIndex("Content"))
+                noteList.add(Note(id, title, content))
+            } while (cursor.moveToNext())
+        }
         var notesAdapter = NotesAdapter(noteList)
         listView.adapter = notesAdapter
 
     }
-
 
     /**
      * creating search view and search manager
