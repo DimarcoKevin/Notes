@@ -11,6 +11,10 @@ class AddNotes : AppCompatActivity() {
         setContentView(R.layout.activity_add_notes)
     }
 
+    fun addNoteLayout(view: View) {
+        setContentView(R.layout.activity_add_notes)
+    }
+
     fun btnAdd(view: View) {
         finish()
     }
