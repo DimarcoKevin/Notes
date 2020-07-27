@@ -39,19 +39,24 @@
             android:id="@+id/llButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit" />
+                android:layout_weight="1"
+                android:scrollbarSize="4dp"
+                app:srcCompat="@drawable/edit" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnDelete"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/delete" />
+
         </LinearLayout>
 
     </LinearLayout>
