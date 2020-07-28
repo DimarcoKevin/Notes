@@ -63,7 +63,13 @@ class AddNotes : AppCompatActivity() {
             }
         }
         finish()
+    }
 
+    /**
+     * this function is to delete a new note in the middle of writing it
+     */
+    fun btnDelete(view: View) {
+        finish()
     }
 
 }
