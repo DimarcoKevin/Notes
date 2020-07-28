@@ -35,12 +35,12 @@ class DbManager {
     /**
      * function is used to delete existing notes from the database
      */
-    fun delete() {
-        // TODO : implement
+    fun delete(selection: String, selectionArgs: Array<String>): Int {
+        return sqlDB!!.delete(dbTable, selection, selectionArgs)
     }
 
     /**
-     * function is used to edit existing notes 
+     * function is used to edit existing notes
      */
     fun edit() {
         // TODO : implement
