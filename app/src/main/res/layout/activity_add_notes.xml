@@ -27,8 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:ems="10"
-            android:hint="Enter title here..."
-            android:inputType="textPersonName" />
+            android:inputType="text"
+            android:maxLength="255"
+            android:hint="Enter title here..." />
 
         <EditText
             android:id="@+id/txtContent"
@@ -37,8 +38,11 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:ems="10"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:maxLength="1000"
+            android:maxLines="12"
             android:hint="Enter note here..."
-            android:inputType="textPersonName" />
+            android:minHeight="200dp" />
 
         <LinearLayout
             android:id="@+id/llButtons"
