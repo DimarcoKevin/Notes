@@ -33,6 +33,20 @@ class DbManager {
     }
 
     /**
+     * function is used to delete existing notes from the database
+     */
+    fun delete() {
+        // TODO : implement
+    }
+
+    /**
+     * function is used to edit existing notes 
+     */
+    fun edit() {
+        // TODO : implement
+    }
+
+    /**
      * function used to find notes currently in the Notes table
      */
     fun query(columns: Array<String>, selection: String, selectionArgs: Array<String>, sortOrder: String): Cursor {
