@@ -22,7 +22,7 @@ class DbManager {
      * creating sql table
      */
     var sqlDB: SQLiteDatabase? = null
-    val sqlCreateTable = "CREATE TABLE IF NOT EXISTS $dbTable ($colID INTEGER PRIMARY KEY, $colTitle VARCHAR(255), $colContent VARCHAR(1024));"
+    val sqlCreateTable = "CREATE TABLE IF NOT EXISTS $dbTable ($colID INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle VARCHAR(255), $colContent VARCHAR(1024));"
 
     /**
      * constructor to create a readable/writeable database
