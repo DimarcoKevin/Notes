@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btnAdd"
+                android:id="@+id/ticketAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -51,7 +51,7 @@
                 app:srcCompat="@drawable/edit" />
 
             <ImageButton
-                android:id="@+id/btnDelete"
+                android:id="@+id/ticketDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
