@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * on create starting method
+     * loads all stored notes from database
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +36,16 @@ class MainActivity : AppCompatActivity() {
     /**
      * creating a search query method
      * this method will search by title, or by all if nothing is chosen
+     * it will iterate over all rows in the database that fit that title
+     * and then return them in note form styling
      */
     private fun loadQuery(title: String) {
-        // load notes from database
+
         var dbManager = DbManager(this)
         val columns = arrayOf("ID", "Title", "Content")
         val selectionArgs = arrayOf(title)
         val cursor = dbManager.query(columns, "Title LIKE ?", selectionArgs, "Title")
         noteList.clear()
-
 
         if (cursor.moveToFirst()) {
             do {

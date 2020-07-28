@@ -34,9 +34,12 @@ class AddNotes : AppCompatActivity() {
         } else {
             Toast.makeText(this, "cannot add note.", Toast.LENGTH_LONG).show()
         }
+        finish()
+
     }
 
     fun btnDelete(view: View) {
         finish()
     }
+    
 }
