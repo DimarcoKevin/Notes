@@ -49,8 +49,8 @@ class DbManager {
     /**
      * function is used to edit existing notes
      */
-    fun edit() {
-        // TODO : implement
+    fun edit(values: ContentValues, selection: String, selectionArgs: Array<String>): Int {
+        return sqlDB!!.update(dbTable, values, selection, selectionArgs)
     }
 
     /**

@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ticketAdd"
+                android:id="@+id/ticketEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

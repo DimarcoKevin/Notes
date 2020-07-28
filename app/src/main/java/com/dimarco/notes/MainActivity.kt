@@ -139,6 +139,9 @@ class MainActivity : AppCompatActivity() {
                 dbManager.delete("ID=?", selectionArgs)
                 loadQuery("%")
             })
+            view.ticketEdit.setOnClickListener(View.OnClickListener {
+                goToUpdate(note)
+            })
 
             return view
         }
@@ -157,5 +160,13 @@ class MainActivity : AppCompatActivity() {
         override fun getCount(): Int {
             return noteListAdapter.size
         }
+    }
+
+    fun goToUpdate(note: Note) {
+        var intent = Intent(this, AddNotes::class.java)
+        intent.putExtra("ID", note.id)
+        intent.putExtra("Title", note.title)
+        intent.putExtra("Content", note.content)
+        startActivity(intent)
     }
 }
