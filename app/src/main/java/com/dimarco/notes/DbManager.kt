@@ -70,11 +70,10 @@ class DbManager {
     inner class DatabaseHelperNotes(context: Context) :
         SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
-        private var context: Context? = null
+
 
         override fun onCreate(db: SQLiteDatabase?) {
             db!!.execSQL(sqlCreateTable)
-            Toast.makeText(this.context, "database has been created.", Toast.LENGTH_LONG).show()
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
