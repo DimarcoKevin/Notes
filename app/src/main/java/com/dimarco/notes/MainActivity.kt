@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         }
         var notesAdapter = NotesAdapter(this, noteList)
         listView.adapter = notesAdapter
-
     }
 
     /**
@@ -123,9 +122,11 @@ class MainActivity : AppCompatActivity() {
             this.noteListAdapter = noteListAdapter
         }
 
-        // creating the view with the layout inflater
-        // using the note list adapter, each note is created with the title and content
-        // this whole view is then returned
+        /**
+         * creating the view with the layout inflater
+         *  using the note list adapter, each note is created with the title and content
+         *  this whole view is then returned
+         * */
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             var view = layoutInflater.inflate(R.layout.ticket, null)
             var note = noteListAdapter[position]
@@ -142,6 +143,9 @@ class MainActivity : AppCompatActivity() {
             return view
         }
 
+        /**
+         * required methods inherited from base adapter
+         */
         override fun getItem(position: Int): Any {
             return noteListAdapter[position]
         }

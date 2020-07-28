@@ -8,6 +8,10 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_notes.*
 
 class AddNotes : AppCompatActivity() {
+
+    /**
+     * creating private values for each column in the notes table
+     */
     private val title = "Title"
     private val content = "Content"
 
@@ -38,8 +42,4 @@ class AddNotes : AppCompatActivity() {
 
     }
 
-    fun btnDelete(view: View) {
-        finish()
-    }
-    
 }
