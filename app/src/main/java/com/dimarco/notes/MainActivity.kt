@@ -34,6 +34,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * on resume is called when it returns back to main activity
+     * this will reload the query and add recently added notes into view
+     */
+    override fun onResume() {
+        super.onResume()
+        loadQuery("%")
+    }
+
+    /**
      * creating a search query method
      * this method will search by title, or by all if nothing is chosen
      * it will iterate over all rows in the database that fit that title
