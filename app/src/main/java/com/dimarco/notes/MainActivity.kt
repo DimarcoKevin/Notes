@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 noteList.add(Note(id, title, content))
             } while (cursor.moveToNext())
         }
-        var notesAdapter = NotesAdapter(noteList)
+        var notesAdapter = NotesAdapter(this, noteList)
         listView.adapter = notesAdapter
 
     }
@@ -117,7 +117,9 @@ class MainActivity : AppCompatActivity() {
      */
     inner class NotesAdapter: BaseAdapter {
         private var noteListAdapter = ArrayList<Note>()
-        constructor(noteListAdapter: ArrayList<Note>): super() {
+        var context: Context? = null
+        constructor(context: Context, noteListAdapter: ArrayList<Note>): super() {
+            this.context = context
             this.noteListAdapter = noteListAdapter
         }
 
@@ -130,6 +132,12 @@ class MainActivity : AppCompatActivity() {
 
             view.tempTitle.text = note.title
             view.tempContent.text = note.content
+            view.ticketDelete.setOnClickListener(View.OnClickListener {
+                var dbManager = DbManager(this.context!!)
+                val selectionArgs = arrayOf(note.id!!.toString())
+                dbManager.delete("ID=?", selectionArgs)
+                loadQuery("%")
+            })
 
             return view
         }
